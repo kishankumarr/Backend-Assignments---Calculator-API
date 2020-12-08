@@ -98,7 +98,8 @@ app.post("/divide", (req,res) => {
   if(isNaN(num1)||isNaN(num2)){
      output.status="error";
      output.message="Invalid data types";
-  }else if(num2===0){
+  }else{ 
+       if(num2===0){
       output.status="error";
       output.status="Cannot divide by zero";
   }else{
@@ -114,6 +115,7 @@ app.post("/divide", (req,res) => {
       output.message="the division of given two numbers";
       output.result=result;
   }
+}
 }
 res.send(output);
 });

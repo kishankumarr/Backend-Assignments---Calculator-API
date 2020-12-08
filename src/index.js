@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json())
 
-app.get('/',(req,res)=>{
-     res.send("Hello World!");
+app.get("/",(req,res)=>{
+     res.status(200).send("Hello World!");
 });
  const output={
    status:"",
@@ -28,7 +28,9 @@ app.post("/add", (req,res) => {
      output.status="error";
      output.message="Invalid data types";
   }else{
-    const result=num1+num2;
+    const number1=Number(num1);
+    const number2=Number(num2);
+    const result=number1+number2;
      if(num<-1000000||num2<-1000000||result<-1000000){
        output.status="error";
        output.message="Underflow";

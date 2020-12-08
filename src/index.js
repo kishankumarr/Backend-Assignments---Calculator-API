@@ -20,30 +20,29 @@ app.get("/",(req,res)=>{
    message:"",
  };
 
-app.post("/add", (req,res) => {
-  const num1=Number(req.body.num1);
-  const num2=Number(req.body.num2);
-
-  if(isNaN(num1)||isNaN(num2)){
-     out.status="error";
-     out.message="Invalid data types";
-  }else{
-    const number1=Number(num1);
-    const number2=Number(num2);
-    const result=number1+number2;
-     if(num<-1000000||num2<-1000000||result<-1000000){
-       out.status="error";
-       out.message="Underflow";
-     }else if(num>1000000||num2>1000000||result>1000000){
-      out.status="error";
-      out.message="Overflow";
-  }else{
-    out.status="success";
-      out.message="the sum of given two numbers";
-      out.sum=result;
+ app.post("/add", (req, res) => {
+  const num1 = req.body.num1;
+  const num2 = req.body.num2;
+  const obj = {
+    status: "success" | "failure" | "error",
+    message: "the sum of given two numbers",
+    sum: 0,
+  };
+  if (isNaN(num1) || isNaN(num2)) {
+    obj.message = "Invalid data types";
+  } else {
+    const number1 = Number(num1);
+    const number2 = Number(num2);
+    const result = number1 + number2;
+    if (number1 < -1000000 || result < -1000000) {
+      obj.message = "Underflow";
+    } else if (number1 > 1000000 || result > 1000000) {
+      obj.message = "Overflow";
+    } else {
+      obj.sum = result;
+    }
   }
-}
-res.send(out);
+  res.send(obj);
 })
 
 app.post("/sub", (req,res) => {

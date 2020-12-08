@@ -85,7 +85,7 @@ app.post("/multiply", (req,res) => {
       output.message="Overflow";
   }else{
       output.status="success";
-      output.message="the product of given two numbers";
+      output.message="The product of given numbers";
       output.result=result;
   }
 }
@@ -112,7 +112,7 @@ app.post("/divide", (req,res) => {
       output.message="Overflow";
   }else{
       output.status="success";
-      output.message="the division of given two numbers";
+      output.message="The division of given numbers";
       output.result=result;
   }
 }

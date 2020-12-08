@@ -11,7 +11,8 @@
   "dependencies": {
     "express": "^4.17.1",
     "mochawesome": "6.1.1",
-    "nodeman": "^1.1.2"
+    "nodeman": "^1.1.2",
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",

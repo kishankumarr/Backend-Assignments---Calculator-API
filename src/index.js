@@ -1,18 +1,18 @@
 const express = require('express')
-const app = express()
+const index = express()
 const bodyParser = require("body-parser");
 const port = 3000
-app.use(express.urlencoded());
+index.use(express.urlencoded());
 
 // Parse JSON bodies (as sent by API clients)
-app.use(express.json());
+index.use(express.json());
 
 
-app.use(bodyParser.urlencoded({ extended: false }))
+index.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(bodyParser.json())
+index.use(bodyParser.json())
 
-("/add", (req,res) => {
+index.post("/add", (req,res) => {
     console.log(req.body);
     let data = req.body
     let status = undefined
@@ -31,12 +31,13 @@ app.use(bodyParser.json())
     res.send(response)
   })
   
-  app.post
-  ("/divide", (req, res) => {
+  index.post("/divide", (req, res) => {
     let data = req.body
     let status = undefined
     let result = undefined
     if(data.num1 && data.num2){
+      status = "success"
+      result = Number(data.num1) / Number(data.num2)
       if(data.num2 == 0){
         status = "error"
         message="Cannot divide by zero"
@@ -47,13 +48,13 @@ app.use(bodyParser.json())
      }
       let response ={
         status: status,
-        message: "The division of given numbers",
+        message: "The division of given two numbers",
         sum:result
       }
       res.send(response)
   })
   
-  ("/sub", (req,res) => {
+  index.post("/sub", (req,res) => {
     console.log(req.body);
     let data = req.body
     let status = undefined
@@ -71,7 +72,25 @@ app.use(bodyParser.json())
     }
     res.send(response)
   })
+  index.post("/mul", (req,res) => {
+    console.log(req.body);
+    let data = req.body
+    let status = undefined
+    let result = undefined
+    if(data.num1 && data.num2){
+      status = "success"
+      result = Number(data.num1) * Number(data.num2)
+    }else {
+      status = "failure"
+    }
+    let response = {
+      status: status,
+      message: "the product of given two numbers",
+      sum: result
+    }
+    res.send(response)
+  })
 
-app.listen(port, () => console.log(`App listening on port ${port}!`))
+index.listen(port, () => console.log(`App listening on port ${port}!`))
   
-module.exports = app;
+module.exports = index;
